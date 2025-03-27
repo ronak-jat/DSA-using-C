@@ -7,20 +7,25 @@ typedef struct {
     int top;
 } Stack;
 
-void initStack(Stack *s) {
+void initStack(Stack *s)
+{
     s->top = -1;
 }
 
-int isEmpty(Stack *s) {
+int isEmpty(Stack *s)
+{
     return s->top == -1;
 }
 
-int isFull(Stack *s) {
+int isFull(Stack *s) 
+{
     return s->top == MAX - 1;
 }
 
-void push(Stack *s, int value) {
-    if (isFull(s)) {
+void push(Stack *s, int value)
+{
+    if (isFull(s)) 
+    {
         printf("Stack Overflow! Cannot push %d\n", value);
         return;
     }
@@ -64,7 +69,8 @@ void display(Stack *s)
     printf("\n");
 }
 
-int main() {
+int main() 
+{
     Stack s;
     initStack(&s); 
     char ch;
@@ -72,8 +78,8 @@ int main() {
     while (true)
     {
         printf("press p for push \n");
-        printf("press v for pop \n");
-        printf("press a for peek \n");
+        printf("press o for pop \n");
+        printf("press e for peek \n");
         printf("press d for stack display \n");
         printf("press q for quit \n");
         scanf(" %c",&ch);
@@ -84,23 +90,27 @@ int main() {
             push(&s,no);
             printf("\n");
         }
-        else if(ch == 'v'){
+        else if(ch == 'o')
+        {
             pop(&s);
             printf("\n");
         }
-        else if (ch == 'a'){
+        else if (ch == 'e')
+        {
             peek(&s);
             printf("\n");
-        }else if (ch == 'd'){
+        }
+        else if (ch == 'd')
+        {
             display(&s);
             printf("\n");
-        }else if (ch == 'q'){
-            break;
-        }else{
-            printf("wrong key pressed !!!");
         }
+        else if (ch == 'q')
+            break;
+        
+        else
+            printf("wrong key pressed !!!");
     }
-    
     return 0;
 }
 
