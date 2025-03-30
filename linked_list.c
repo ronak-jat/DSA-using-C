@@ -7,10 +7,8 @@ struct node{
     struct node * next;
 };
 
-void display(struct node *head)
-{
-    if (head == NULL)
-    {
+void display(struct node *head){
+    if (head == NULL){
         printf("List is empty. \n");
         return;
     }
@@ -23,11 +21,9 @@ void display(struct node *head)
     printf("NULL \n");
 }
 
-void count(struct node *head)
-{
+void count(struct node *head){
     int ct=0;
-    if (head == NULL)
-    {
+    if (head == NULL){
         printf("number of items is 0.\n");
         return;
     }
@@ -40,13 +36,11 @@ void count(struct node *head)
     printf("number of items is %d \n",ct);
 }
 
-void ins_end(struct node **head ,int no)
-{
+void ins_end(struct node **head ,int no){
     struct node *ptr,*temp= (struct node*)malloc(sizeof(struct node));
     temp->data=no;
     temp->next = NULL;
-    if (*head == NULL)
-    {
+    if (*head == NULL){
         *head = temp;
         printf("Inserted %d at end (list was empty)\n", no);
         return ;
@@ -59,8 +53,7 @@ void ins_end(struct node **head ,int no)
     printf("Inserted %d at end\n", no);  
 }
 
-void ins_beg(struct node **head,int no)
-{
+void ins_beg(struct node **head,int no){
     struct node *temp = (struct node*)malloc(sizeof(struct node));
     temp->data=no;
     temp->next = NULL;
@@ -74,8 +67,7 @@ void ins_beg(struct node **head,int no)
     printf("Inserted %d at beginning\n", no);
 }
 
-void ins_pos(struct node **head,int no,int pos)
-{
+void ins_pos(struct node **head,int no,int pos){
     struct node *ptr ,*temp = (struct node*)malloc(sizeof(struct node));
     temp->data = no;
     
@@ -106,8 +98,7 @@ void ins_pos(struct node **head,int no,int pos)
     printf("Inserted %d at position %d\n", no, pos);
 }
 
-void del_end(struct node **head)
-{
+void del_end(struct node **head){
     if (*head == NULL) {
         printf("List is already empty\n");
         return;
@@ -129,8 +120,7 @@ void del_end(struct node **head)
     free(temp);
 }
 
-void del_beg(struct node **head)
-{
+void del_beg(struct node **head) {
     if (*head == NULL) {
         printf("List is already empty\n");
         return;
@@ -142,8 +132,7 @@ void del_beg(struct node **head)
     free(temp);
 }
 
-void del_pos(struct node **head, int pos)
-{
+void del_pos(struct node **head, int pos) {
     if (*head == NULL) {
         printf("List is empty\n");
         return;
@@ -168,8 +157,21 @@ void del_pos(struct node **head, int pos)
     free(temp);
 }
 
-void free_list(struct node **head)
-{
+void reverse(struct node **head) {
+    struct node *prev = NULL, *current = *head, *next = NULL;
+
+    while (current != NULL) {
+        next = current->next;  
+        current->next = prev; 
+        prev = current; 
+        current = next;
+    }
+    *head = prev; 
+    printf("list is reversed. \n");
+}
+
+
+void free_list(struct node **head) {
     struct node *temp;
     while (*head != NULL) {
         temp = *head;
@@ -178,38 +180,38 @@ void free_list(struct node **head)
     }
 }
 
-int main() 
-{
+int main() {
     struct node *head = NULL;
-    char ch;
+    int ch;
     int no,pos;
     while (true)
     {
-        printf("p - insert at end \n");
-        printf("w - insert at beginning \n");
-        printf("e - insert at pos \n");
-        printf("r - delete at end \n");
-        printf("t - delete at beginning \n");
-        printf("y - delete at pos \n");
-        printf("d - list display \n");
-        printf("c - number of items in list \n");
-        printf("q - quit \n");
-        scanf(" %c",&ch);
-        if (ch == 'p')
+        printf("1 - insert at end \n");
+        printf("2 - insert at beginning \n");
+        printf("3 - insert at pos \n");
+        printf("4 - delete at end \n");
+        printf("5 - delete at beginning \n");
+        printf("6 - delete at pos \n");
+        printf("7 - list display \n");
+        printf("8 - number of items in list \n");
+        printf("9 - reverse the list \n");
+        printf("10 - quit \n");
+        scanf(" %d",&ch);
+        if (ch == 1)
         {
             printf("enter number : ");
             scanf("%d",&no);
             ins_end(&head,no);
             printf("\n");
         }
-        else if (ch == 'w')
+        else if (ch == 2)
         {
             printf("enter number : ");
             scanf("%d",&no);
             ins_beg(&head,no);
             printf("\n");
         }
-        else if (ch == 'e')
+        else if (ch == 3)
         {
             printf("enter number : ");
             scanf("%d",&no);
@@ -218,39 +220,42 @@ int main()
             ins_pos(&head,no,pos);
             printf("\n");
         }
-        else if(ch == 'r')
+        else if(ch == 4)
         {
             del_end(&head);
             printf("\n");
         }
-        else if(ch == 't')
+        else if(ch == 5)
         {
             del_beg(&head);
             printf("\n");
         }
-        else if(ch == 'y')
+        else if(ch == 6)
         {
             printf("enter position : ");
             scanf("%d",&pos);
             del_pos(&head,pos);
             printf("\n");
         }
-        else if (ch == 'd')
+        else if (ch == 7)
         {
             display(head);
             printf("\n");
         }
-        else if (ch == 'c')
+        else if (ch == 8)
         {
             count(head);
             printf("\n");
+        }else if (ch == 9){
+            reverse(&head);
         }
-        else if (ch == 'q'){
+        else if (ch == 10){
             free_list(&head);
             break;
         }
         else
             printf("wrong key pressed !!!\n");
     }
-    return 0;   
+    return 0;
+    
 }
