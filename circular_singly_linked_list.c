@@ -78,7 +78,6 @@ void ins_beg(struct node **head,int no){
 }
 
 void ins_pos(struct node **head,int no,int pos){
-    struct node *temp = createnode(no);
     if (pos < 1) {
         printf("Invalid position! Position must be >= 1\n");
         free(temp);
@@ -89,7 +88,7 @@ void ins_pos(struct node **head,int no,int pos){
         ins_beg(head,no); 
         return;
     }
-    
+    struct node *temp = createnode(no);
     struct node *ptr = *head;
     for(int i = 1 ;i < pos-1 && ptr!=NULL ;i++){
         ptr = ptr->next;
