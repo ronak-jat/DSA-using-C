@@ -90,7 +90,7 @@ void ins_pos(struct node **head,int no,int pos){
     }
     struct node *temp = createnode(no);
     struct node *ptr = *head;
-    for(int i = 1 ;i < pos-1 && ptr!=NULL ;i++){
+    for(int i = 1 ;i < pos-1 && ptr->next != *head ;i++){
         ptr = ptr->next;
     }
     
