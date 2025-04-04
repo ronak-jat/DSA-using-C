@@ -4,7 +4,7 @@ int binarySearch(int arr[], int left, int right, int no)
 {
     while(left<=right)
     {
-        int mid = (left+ right)/2;
+        int mid = (left+ right)/2; 
         if (arr[mid] == no)
             return mid;
         else if (arr[mid]>no)
