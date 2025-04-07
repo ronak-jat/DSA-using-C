@@ -14,7 +14,7 @@ int insert(int arr[],int n,int size,int pos,int value)
 }
 
 void display(int arr[], int n)
-{
+{  
     for (int i = 0; i < n; i++)
         printf("%d ", arr[i]);
 }
