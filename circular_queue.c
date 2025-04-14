@@ -3,7 +3,7 @@
 
 #define max 20
 
-typedef struct{
+typedef struct{ 
     int arr[max];
     int front ;
     int rear;
