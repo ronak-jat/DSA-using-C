@@ -2,7 +2,7 @@
 
 int binarySearch(int arr[], int left, int right, int no) 
 {
-    while(left<=right)
+    if(left<=right)
     {
         int mid = (left+ right)/2; 
         if (arr[mid] == no)
